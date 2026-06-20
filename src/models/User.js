@@ -20,8 +20,41 @@ const UserSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["member", "admin"],
+      enum: ["member", "trainer", "admin"],
       default: "member",
+    },
+
+    age: Number,
+    gender: String,
+    height: Number,
+    weight: Number,
+
+    goal: {
+      type: String,
+      enum: [
+        "Weight Loss",
+        "Muscle Gain",
+        "Maintain Weight",
+        "General Fitness",
+      ],
+    },
+
+    activityLevel: {
+      type: String,
+      enum: [
+        "Beginner",
+        "Intermediate",
+        "Advanced",
+      ],
+    },
+
+    dietPreference: {
+      type: String,
+      enum: [
+        "Veg",
+        "Non-Veg",
+        "Vegan",
+      ],
     },
   },
   {
@@ -29,8 +62,9 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-const User =
+export default
   mongoose.models.User ||
-  mongoose.model("User", UserSchema);
-
-export default User;
+  mongoose.model(
+    "User",
+    UserSchema
+  );
